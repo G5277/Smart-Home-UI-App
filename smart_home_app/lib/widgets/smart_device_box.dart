@@ -7,9 +7,9 @@ class SmartDeviceBox extends StatelessWidget {
   final String smartDeviceName;
   final String iconPath;
   final bool powerOn;
-  void Function(bool)? onChanged;
+  final void Function(bool)? onChanged;
 
-  SmartDeviceBox({
+  const SmartDeviceBox({
     super.key,
     required this.smartDeviceName,
     required this.iconPath,
@@ -23,7 +23,7 @@ class SmartDeviceBox extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[400],
+          color: powerOn ? Colors.grey[900] : Colors.grey[400], 
           borderRadius: BorderRadius.circular(24),
         ),
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -31,7 +31,12 @@ class SmartDeviceBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // icon
-            Image.asset(iconPath, height: 65),
+            Image.asset(
+              iconPath, 
+              height: 65,
+              color: powerOn ? Colors.grey[400] : Colors.grey[900],
+
+              ),
 
             // name + toggle
             Row(
@@ -41,9 +46,10 @@ class SmartDeviceBox extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 25.0),
                     child: Text(
                       smartDeviceName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        color: powerOn ? Colors.grey[400] : Colors.grey[900]
                       ),
                     ),
                   ),

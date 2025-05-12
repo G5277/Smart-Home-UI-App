@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/widgets/smart_device_box.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,10 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // padding constants
-  final double horizontalPadding = 40;
-  final double verticalPadding = 40;
-
   // list of Smart Devices
   List mySmartDevices = [
     // deviceName, iconPath, powerStatus
@@ -37,10 +34,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: horizontalPadding,
-                vertical: verticalPadding,
-              ),
+              padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,35 +51,43 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 2),
 
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: verticalPadding,
-                vertical: verticalPadding,
-              ),
+              padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Welcome Home,"),
-                  Text("AETHER HOME", style: TextStyle(fontSize: 40)),
+                children: [
+                  Text(
+                    "Welcome Home,",
+                    style: TextStyle(fontSize: 30, color: Colors.grey[800]),
+                  ),
+                  Text(
+                    "AETHER HOME",
+                    style: GoogleFonts.bebasNeue(fontSize: 72),
+                  ),
                 ],
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Divider(color: Colors.grey[500], thickness: 1),
+            ),
             // smart devices + grid
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: verticalPadding,
-                vertical: verticalPadding,
+              padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
+              child: Text(
+                "Smart Devices",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
-              child: Text("Smart Devices"),
             ),
 
             Expanded(
               child: GridView.builder(
                 itemCount: mySmartDevices.length,
-                padding: const EdgeInsets.all(25),
+                physics: NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1 / 1.3,
